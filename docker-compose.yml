@@ -30,7 +30,7 @@ services:
       POSTGRES_PASSWORD: "dagster"
       POSTGRES_DB: "dagster"
     ports:
-      - "5432:5432"
+      - "5432:5432" 
     volumes:
       - ./postgres_init.sql:/docker-entrypoint-initdb.d/postgres_init.sql
       - postgres_data:/var/lib/postgresql/data
@@ -43,6 +43,29 @@ services:
       terces:
         ipv4_address: 10.0.0.30
 
+  postgres_exporter:
+    image: prometheuscommunity/postgres-exporter
+    container_name: postgres_exporter
+    environment:
+      DATA_SOURCE_NAME: "postgresql://dagster:dagster@postgres:5432/dagster?sslmode=disable"
+    ports:
+      - "9187:9187"
+    depends_on:
+      - postgres
+    networks:
+      terces:
+        ipv4_address: 10.0.0.31
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Mount the Prometheus configuration file
+    networks:
+      terces:
+        ipv4_address: 10.0.0.32
   #opentelemetry-collector
   opentelemetry-collector:
     image: otel/opentelemetry-collector:latest
@@ -57,6 +80,50 @@ services:
     volumes:
       - ./opentelemetry-collector/data/otel-collector-config.yml:/etc/otel-collector-config.yml
 
+# Minio Storage Server
+  minio:
+    image: minio/minio:latest
+    environment:
+      - MINIO_ROOT_USER=mthammu
+      - MINIO_ROOT_PASSWORD=SecretDataStack5623#
+      - MINIO_DOMAIN=storage
+      - MINIO_REGION_NAME=us-east-1
+      - MINIO_REGION=us-east-1
+    container_name: minio
+    hostname: minio-server
+    ports:
+      - 7001:9001
+      - 7000:9000
+    command: ["server", "/data", "--console-address", ":9001"]
+    volumes:
+      - minio_data:/data
+    networks:
+      terces:
+        ipv4_address: 10.0.0.23
+
+   # Minio Setup for creating buckets
+  minio-setup:
+    image: minio/minio:latest
+    depends_on:
+      - minio
+    environment:
+      - MINIO_ROOT_USER=mthammu
+      - MINIO_ROOT_PASSWORD=SecretDataStack5623#
+    volumes:
+      - ./minio/sampledata:/tmp/data # Adjust this path to where your data files are stored
+    entrypoint: >
+      /bin/sh -c "
+      echo 'Waiting for MinIO to start...' &&
+      /bin/sleep 10 &&
+      mc alias set minio http://minio:9000 $$MINIO_ROOT_USER $$MINIO_ROOT_PASSWORD &&
+      mc mb minio/lakehouse &&
+      mc mb minio/landing &&
+      mc mb minio/sampledata &&
+      mc cp --recursive /tmp/data/* minio/sampledata/ &&
+      echo 'Buckets created and data loaded.'"
+    networks:
+      terces:
+        ipv4_address: 10.0.0.22
 
   # Dremio
   dremio:
@@ -65,7 +132,7 @@ services:
       - 9047:9047
       - 31010:31010
       - 32010:32010
-    container_name: dremio
+    container_name: dremio  
     hostname: dremio
     environment:
       - DREMIO_JAVA_SERVER_HEAP_MAX=4G
@@ -82,6 +149,22 @@ services:
     networks:
       terces:
         ipv4_address: 10.0.0.21
+
+#grafana
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '512M'
+    networks:
+      terces:
+        ipv4_address: 10.0.0.17
+
 
 volumes:
   postgres_data:
