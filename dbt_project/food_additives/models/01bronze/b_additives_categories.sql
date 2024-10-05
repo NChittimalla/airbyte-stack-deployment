@@ -1,0 +1,1 @@
+SELECT distinct trim(Additive) as additive, trim("Food Category No") as food_cat_no FROM landing.landing."standard_additives"."additives_categories.parquet" where additive is not null or "Food Category No" is not null

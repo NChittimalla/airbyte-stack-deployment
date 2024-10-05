@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: b_additive_levels
+    description: "fnb Data related to food additives"
+    columns:
+      - name: food_cat_no
+        description: "Category of the each food product"
+      - name: MaxLevel
+        description: "tells us about the max additive levels we can use in a food products"
+      - name: YearAdopted
+        description: "tells about the year the additive levels adopted"
+
+       
+    tests:
+      - not_null:
+          column_name: food_cat_no
+      - not_null:
+          column_name: MaxLevel
+      - not_null:
+          column_name: YearAdopted
+
+models:
+  - name: b_additives_categories
+    description: "Table containing category and subcategory information"
+    columns:
+      - name: master_category_no
+        description: "Master category number"
+      - name: master_category
+        description: "Master category name"
+      - name: main_category_no
+        description: "Main category number"
+      - name: main_category
+        description: "Main category name"
+      - name: sub_category_no
+        description: "Sub category number"
+      - name: sub_category
+        description: "Sub category name"
+      - name: category_no
+        description: "Category number"
+      - name: category
+        description: "Category name"
+
+    tests:
+      - not_null:
+          column_name: master_category_no
+      - not_null:
+          column_name: master_category
+      - not_null:
+          column_name: main_category_no
+      - not_null:
+          column_name: main_category
+      - not_null:
+          column_name: sub_category_no
+      - not_null:
+          column_name: sub_category
+      - not_null:
+          column_name: category_no
+      - not_null:
+          column_name: category
+
+   
+   

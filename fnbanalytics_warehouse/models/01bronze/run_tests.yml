@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: b_inv
+    description: "fnb Data related to Inventory"
+    columns:
+      - name: product_id
+        description: "The unique identifier for each record"
+      - name: quantity
+        description: "This is the qunatity of the product"
+    tests:
+      - unique:
+          column_name: product_id
+      - not_null:
+          column_name: quantity
+    
+  - name: b_prod
+    description: "fnb Data related to Products"
+    columns:
+      - name: product_id
+        description: "The unique identifier for each record"
+      - name: price
+        description: "This is the price of the product"
+    tests:
+      - unique:
+          column_name: product_id
+      - not_null:
+          column_name: quantity 

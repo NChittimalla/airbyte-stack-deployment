@@ -1,0 +1,19 @@
+FROM apache/superset:latest
+
+USER root
+
+# Upgrade pip first
+RUN pip install --upgrade pip
+
+# Install necessary packages
+RUN pip install \
+    pyarrow \
+    pandas \
+    sqlalchemy-dremio \
+    apache-superset[postgres,celery,redis] \
+    google-auth \
+    google-api-python-client \
+    google-auth-httplib2 \
+    google-auth-oauthlib
+
+USER superset

@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: s_inv_prod_join
+    description: "fnbanalytics Data related to Inventory and Products"
+    columns:
+      - name: product_id
+        description: "The unique identifier for each record"
+      - name: price
+        description: "This is the price of the product"
+    tests:
+      - unique:
+          column_name: product_id
+      - not_null:
+          column_name: price
+      - not_null:
+          column_name: reorder_level

@@ -1,0 +1,1 @@
+SELECT * FROM  {{ ref('b_inv') }} as i INNER JOIN {{ ref('b_prod') }} as p ON i.product_id = p.product_id

@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: g_inv_prod_view
+    description: "Final fnbanalytics Data related to Inventory and Products"
+    columns:
+      - name: product_id
+        description: "The unique identifier for each record"
+      - name: quantity
+        description: "This is the qunatity of the product"
+    tests:
+      - unique:
+          column_name: product_id
+      - not_null:
+          column_name: quantity

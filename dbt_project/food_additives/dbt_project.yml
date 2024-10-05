@@ -1,0 +1,33 @@
+name: 'food_additives'
+version: '1.0.0'
+config-version: 2
+
+profile: 'food_additives'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+  - "logs"
+  - "dbt_modules"
+
+models:
+  food_additives:
+    01bronze:
+      +database: nessie
+      +schema: fnbanalytics.01bronze
+      +materialized: table
+    02silver:
+      +database: nessie
+      +schema: fnbanalytics.02silver
+      +materialized: view
+    03gold:
+      +database: nessie
+      +schema: fnbanalytics.03gold
+      +materialized: view

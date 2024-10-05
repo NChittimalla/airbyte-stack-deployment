@@ -1,0 +1,35 @@
+FROM jupyter/pyspark-notebook:latest
+
+# Install necessary Python packages
+<<<<<<< HEAD
+RUN pip install transformers openai numpy pandas PyPDF2 pdfplumber minio tabula-py jpype1 camelot-py[cv] pytesseract pyspark pdfminer.six fitz PyMuPDF frontend pypdf pythonnet pdf2image opencv-python spacy tensorflow
+=======
+RUN pip install numpy pandas PyPDF2 pdfplumber minio tabula-py jpype1 camelot-py[cv] pytesseract pyspark pdfminer.six fitz PyMuPDF frontend pypdf pythonnet pdf2image opencv-python
+>>>>>>> origin/master
+
+# Temporarily switch to root user to create user and group and install Tesseract OCR
+USER root
+
+# Install Tesseract OCR and poppler-utils
+RUN apt-get update && apt-get install -y \
+    tesseract-ocr \
+    poppler-utils \
+    && rm -rf /var/lib/apt/lists/*
+
+# Ensure the .local directory exists and has the correct permissions
+RUN mkdir -p /home/jovyan/.local && chown -R jovyan:users /home/jovyan/.local
+
+# Set permissions for the work directory and make sure it is owned by the jovyan user
+RUN mkdir -p /data && chown -R jovyan:users /data
+
+# Switch back to the non-root user
+USER jovyan
+
+# Set the working directory
+WORKDIR /data
+
+# Copy the current directory contents into the container at /data
+COPY --chown=jovyan:users . /data
+
+# Run Jupyter Notebook as the non-root user
+CMD ["start.sh", "jupyter", "notebook", "--ip=0.0.0.0", "--no-browser", "--NotebookApp.token=''"]

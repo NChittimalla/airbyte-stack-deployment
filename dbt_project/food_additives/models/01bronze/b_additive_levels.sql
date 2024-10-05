@@ -1,0 +1,1 @@
+SELECT distinct trim(FoodCatNo) as food_cat_no, trim(MaxLevel) max_level, TRIM(YearAdopted) as year_adopted FROM landing.landing."standard_additives"."additive_levels.parquet" where trim(YearAdopted) <>'' or trim(MaxLevel) <> ''

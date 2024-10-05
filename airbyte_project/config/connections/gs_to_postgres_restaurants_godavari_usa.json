@@ -1,0 +1,57 @@
+{
+  "sourceId": "23084a15-7996-4f52-a660-97eddbe6620b",
+  "destinationId": "2f38503c-ab41-45ab-ace2-b106d09dfb4c",
+  "name": "gs_to_postgres_restaurants_godavari_usa",
+  "namespaceDefinition": "customformat",
+  "namespaceFormat": "public",
+  "prefix": "restaurants_",
+  "syncCatalog": {
+    "streams": [
+      {
+        "stream": {
+          "name": "godavari_usa",
+          "jsonSchema": {
+            "type": "object",
+            "properties": {
+              "Country": {
+                "type": "string"
+              },
+              "State": {
+                "type": "string"
+              },
+              "Contact Number": {
+                "type": "string"
+              },
+              "Email Id": {
+                "type": "string"
+              },
+              "Address": {
+                "type": "string"
+              },
+              "Image URL": {
+                "type": "string"
+              },
+              "Website URL": {
+                "type": "string"
+              },
+              "Google Map URL": {
+                "type": "string"
+              }
+            }
+          },
+          "supportedSyncModes": [
+            "full_refresh",
+            "incremental"
+          ]
+        },
+        "config": {
+          "syncMode": "full_refresh",
+          "destinationSyncMode": "overwrite",
+          "selected": true
+        }
+      }
+    ]
+  },
+  "scheduleType": "manual",
+  "status": "active"
+}

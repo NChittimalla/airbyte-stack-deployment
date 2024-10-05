@@ -1,0 +1,12 @@
+dagster
+dagit
+dagster-graphql
+#dagster-postgres
+
+
+
+#If you want to install specific versions, you can specify them like this:
+#dagster==0.13.10
+#dagit==0.13.10
+#dagster-graphql==0.13.10
+#dagster-postgres==0.13.10

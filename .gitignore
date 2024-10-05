@@ -1,0 +1,192 @@
+# Node.js
+node_modules/
+npm-debug.log
+
+
+#postgres data folder
+open-source-modern-data-stack/
+MAD-GAB/
+#terraform.tfvars
+*.tfstate
+backup/
+#data/
+#minikube/
+pgaadmin_data/
+terraform/
+history/
+schedules/
+dremio/
+.telemetry/
+spark/
+superset/
+mongodb/
+airbyte/
+.nux/
+.logs_queue/
+dbt/
+logs 2/
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+VENV/
+*.env
+*.env.*
+#Master_Data_Sets/
+Archive/
+#Data_Stack_Content/
+#Scripts/
+
+
+# Logs
+*.log
+logs/
+*.log.*
+log/
+
+# Virtualenv
+venv/
+ENV/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+.*.swp
+.*.swo
+.*.swn
+.trash/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+tmp/
+
+# Visual Studio Code
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# Database
+*.sqlite3
+*.db
+
+# Images
+#*.png
+#*.jpg
+#*.jpeg
+*.gif
+*.ico
+*.svg
+
+# Backup files
+*.bak
+
+# Docker
+*.log
+docker-compose.override.yml
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.crash
+.terraform/
+#terraform.tfvars
+/Users/thammus/Data_Work/modern_data_stack/terraform/
+override.tf
+ec2.tf
+keypair.tf
+output.tf
+provider.tf
+terraform.tfvars
+variables.tf
+vpc.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+.terraform.d
+nohup.out
+# Coverage reports
+*.lcov
+coverage/
+*.nyc_output
+*.clover
+.nyc_output/
+
+# Dist folder
+dist/
+build/
+
+# Generated files
+*.min.js
+*.min.css
+*.map
+
+# Package files
+*.tgz
+*.zip
+*.tar
+*.tar.gz
+terraform.tfstate
+terraform.tfstate.backup
+.terraform.lock.hcl
+
+# Secrets
+secrets.yml
+*.key
+*.pem
+#docker-compose.yml
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Misc
+.DS_Store
+*.class
+*.war
+*.jar
+*.swp
