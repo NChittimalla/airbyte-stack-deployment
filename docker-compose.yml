@@ -62,7 +62,7 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Mount the Prometheus configuration file
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml  # Mount the Prometheus configuration file
     networks:
       terces:
         ipv4_address: 10.0.0.32
