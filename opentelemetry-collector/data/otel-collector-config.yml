@@ -1,16 +1,28 @@
 receivers:
   otlp:
     protocols:
-      grpc:
-      http:
+      grpc: {}
+
+processors:
+  batch: {}
 
 exporters:
-  logging: {}
-  otlp:
-    endpoint: "http://10.0.0.25:4317"
+  debug: {}
+  prometheus:
+    endpoint: 0.0.0.0:8890
+    namespace: airbyte
+    send_timestamps: true
+    metric_expiration: 60m
+
+extensions:
+  health_check:
+  pprof:
+  zpages:
 
 service:
+  extensions: [health_check, pprof, zpages]
   pipelines:
-    traces:
+    metrics:
       receivers: [otlp]
-      exporters: [logging, otlp]
+      processors: [batch]
+      exporters: [debug, prometheus]
