@@ -160,6 +160,7 @@ services:
     volumes:
       - dremio_data:/opt/dremio/data
       - dremio_log:/opt/dremio/log
+      - ./dremio.conf:/opt/dremio/conf/dremio.conf
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost:9047 || exit 1"]
       interval: 30s
