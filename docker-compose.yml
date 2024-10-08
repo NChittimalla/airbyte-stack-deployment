@@ -149,6 +149,7 @@ services:
       - 9047:9047
       - 31010:31010
       - 32010:32010
+      - 9091:9091
     container_name: dremio
     hostname: dremio
     environment:
