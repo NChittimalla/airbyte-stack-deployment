@@ -64,11 +64,6 @@ services:
     networks:
       terces:
         ipv4_address: 10.0.0.32
-<<<<<<< Updated upstream
-        
-  # Minio Storage Server
-=======
->>>>>>> Stashed changes
   minio:
     image: minio/minio:latest
     environment:
