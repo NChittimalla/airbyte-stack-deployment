@@ -148,24 +148,6 @@ minio-setup:
       terces:
         ipv4_address: 10.0.0.17
 
-  dagster:
-    image: dagster/dagster:latest
-    container_name: dagster
-    ports:
-      - "3000:3000"  # Dagster web interface
-    volumes:
-      - ./dagster:/opt/dagster/dagster_home  # Persistent storage
-    environment:
-      DAGSTER_HOME: /opt/dagster/dagster_home
-      POSTGRES_HOST: postgres
-      POSTGRES_DB: dagster
-      POSTGRES_USER: dagster    command: ["server", "/data", "--console-address", ":9001"]
-    volumes:
-      - minio_data:/data
-    networks:
-      terces:
-        ipv4_address: 10.0.0.23
-
   # Minio Setup for creating buckets
   minio-setup:
     image: minio/minio:latest
