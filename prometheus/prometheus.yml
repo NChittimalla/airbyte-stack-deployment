@@ -8,8 +8,13 @@ scrape_configs:
 
   - job_name: 'dremio'
     static_configs:
-      - targets: ['10.0.0.21:9091']
+      - targets: ['dremio:9091']
 
   - job_name: 'otel-collector'
     static_configs:
+<<<<<<< Updated upstream
       - targets: ['10.0.0.25:8889']
+=======
+      - targets: ['18.189.225.177:8889']
+
+>>>>>>> Stashed changes
